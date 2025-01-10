@@ -17,7 +17,7 @@ from browser_use import Agent
 
 # NOTE: captchas are hard. For this example it works. But e.g. for iframes it does not.
 # for this example it helps to zoom in.
-llm = ChatOpenAI(model='gpt-4o')
+llm = ChatOpenAI(model='gpt-4o-mini')
 agent = Agent(
 	task='go to https://captcha.com/demos/features/captcha-demo.aspx and solve the captcha',
 	llm=llm,

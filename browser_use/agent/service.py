@@ -976,3 +976,27 @@ class Agent:
 		draw.text((number_x, number_y), number_text, font=number_font, fill='white')
 
 		return frame
+
+	def _get_completion(self, messages):
+		try:
+			# Convert messages to OpenRouter format if needed
+			formatted_messages = []
+			for msg in messages:
+				# Ensure each message has the correct format
+				formatted_msg = {
+					"role": msg["role"],
+					"content": msg["content"]
+				}
+				formatted_messages.append(formatted_msg)
+
+			response = self.client.chat.completions.create(
+				model="anthropic/claude-3-sonnet",
+				messages=formatted_messages,
+				temperature=0.7,
+				stream=False
+			)
+			return response.choices[0].message.content
+		except Exception as e:
+			logger.error(f"Error getting completion: {e}")
+			logger.error(f"Messages that caused error: {formatted_messages}")  # Debug line
+			return None

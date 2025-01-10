@@ -42,16 +42,19 @@ async def main():
 	task = (
 		f'Copy the text "Hello, world!" to the clipboard, then go to google.com and paste the text'
 	)
-	model = ChatOpenAI(model='gpt-4o')
+	model = ChatOpenAI(model='gpt-4o-mini')
 	agent = Agent(
 		task=task,
 		llm=model,
 		controller=controller,
 		browser=browser,
+		generate_gif=False  # Disable GIF creation
 	)
 
-	await agent.run()
-	await browser.close()
+	try:
+		await agent.run()
+	finally:
+		await browser.close()
 
 	input('Press Enter to close...')
 

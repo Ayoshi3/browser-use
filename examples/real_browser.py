@@ -17,7 +17,7 @@ browser = Browser(
 	config=BrowserConfig(
 		headless=False,
 		# NOTE: you need to close your chrome browser - so that this can open your browser in debug mode
-		chrome_instance_path='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+		chrome_instance_path='C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe',
 	)
 )
 controller = Controller()
@@ -26,7 +26,7 @@ controller = Controller()
 async def main():
 	task = f'In docs.google.com write my Papa a quick thank you for everything letter \n - Magnus'
 	task += f' and save the document as pdf'
-	model = ChatOpenAI(model='gpt-4o')
+	model = ChatOpenAI(model='gpt-4o-mini')
 	agent = Agent(
 		task=task,
 		llm=model,
